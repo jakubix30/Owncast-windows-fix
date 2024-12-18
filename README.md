@@ -55,16 +55,6 @@ The frontend is the web interface that includes the player, chat, embed componen
 
 ## TODO
 
-### transcoder.go
-1. t.getVariantsString(),
-```
-time="2024-12-18T20:38:04+01:00" level=error msg="[AVFormatContext @ 000001cd19b7d040] Unable to choose an output format for '\"'; use a standard extension for the filename or specify the format manually."
-time="2024-12-18T20:38:04+01:00" level=error msg="[out#0 @ 000001cd1963ecc0] Error initializing the muxer for \": Invalid argument"
-time="2024-12-18T20:38:04+01:00" level=error msg="Error opening output file \"."
-time="2024-12-18T20:38:04+01:00" level=error msg="Error opening output files: Invalid argument"
-time="2024-12-18T20:38:04+01:00" level=error msg="transcoding error. look at data/logs/transcoder.log to help debug. your copy of ffmpeg may not support your selected codec of libx264 https://owncast.online/docs/codecs/"
-exit status 0xc000013a
-```
 ### web
 npm run dev make it run normal
 ```
