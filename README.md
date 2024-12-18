@@ -28,7 +28,7 @@
 
 ## Getting Started
 
-I created this small fix by modifying only two files to make FFmpeg work on Windows. It was written quickly, with some help from ChatGPT, so it's not perfect. I'm publishing this as an unfinished but functional fix. I removed the RTMP Output settings and added my own modifications in transcoder.go. For now, it works at 0.1.3 version.
+I created this small fix by modifying only two files to make FFmpeg work on Windows. It was written quickly, with some help from ChatGPT, so it's not perfect. I'm publishing this as an unfinished but functional fix. For now, it works at 0.1.3 version.
 
 ### Backend
 
