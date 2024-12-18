@@ -226,21 +226,21 @@ func (t *Transcoder) getString() string {
 		"-i", t.input, // Wejście: RTMP strumień przesyłany do Owncast
 
 		// RTMP Output
-		"-map v:0",
-		"-c:v:0", "libx264",
-		"-b:v:0", "1008k",
-		"-maxrate:v:0", "1088k",
-		"-g:v:0", "72",
-		"-keyint_min:v:0", "72",
-		"-r:v:0", "24",
-		"-x264-params:v:0", "scenecut=0:open_gop=0",
-		"-bufsize:v:0", "1088k",
-		"-profile:v:0", "high",
-		"-map a:0?",
-		"-c:a:0", "copy",
-		"-preset", "veryfast",
+		//"-map v:0",
+		//"-c:v:0", "libx264",
+		//"-b:v:0", "1008k",
+		//"-maxrate:v:0", "1088k",
+		//"-g:v:0", "72",
+		//"-keyint_min:v:0", "72",
+		//"-r:v:0", "24",
+		//"-x264-params:v:0", "scenecut=0:open_gop=0",
+		//"-bufsize:v:0", "1088k",
+		//"-profile:v:0", "high",
+		//"-map a:0?",
+		//"-c:a:0", "copy",
+		//"-preset", "veryfast",
 
-		//t.getVariantsString(),
+		t.getVariantsString(),
 
 		// HLS Output
 		"-f", "hls",
@@ -272,7 +272,7 @@ func (t *Transcoder) getString() string {
 		"-http_persistent", "1",
 		fmt.Sprintf("%s/%%v/stream.m3u8", localListenerAddress),
 	}
-
+	//log.Info("ffmpegFlags", ffmpegFlags)
 	return strings.Join(ffmpegFlags, " ")
 }
 
@@ -368,17 +368,23 @@ func (v *HLSVariant) getVariantString(t *Transcoder) string {
 
 // Get the command flags for the variants.
 func (t *Transcoder) getVariantsString() string {
-	variantsCommandFlags := ""
-	variantsStreamMaps := " -var_stream_map \""
+	var variantsCommandFlags strings.Builder
+	var variantsStreamMaps strings.Builder
 
+	variantsStreamMaps.WriteString(" -var_stream_map ") // del \"
 	for _, variant := range t.variants {
-		variantsCommandFlags = variantsCommandFlags + " " + variant.getVariantString(t)
-		singleVariantMap := fmt.Sprintf("v:%d,a:%d ", variant.index, variant.index)
-		variantsStreamMaps += singleVariantMap
-	}
-	variantsCommandFlags = variantsCommandFlags + " " + variantsStreamMaps + "\""
+		variantsCommandFlags.WriteString(" " + variant.getVariantString(t))
+		//singleVariantMap := fmt.Sprintf("v:%d,a:%d", variant.index, variant.index)
+		//variantsStreamMaps.WriteString(singleVariantMap + " ")
+		variantsStreamMaps.WriteString(fmt.Sprintf("v:%d,a:%d ", variant.index, variant.index))
 
-	return variantsCommandFlags
+	}
+	// Usuń końcową spację
+	variantsStreamMapsString := strings.TrimSpace(variantsStreamMaps.String())
+	variantsCommandFlags.WriteString(" " + variantsStreamMapsString + "") //del \"
+
+	//log.Infof("Variant command flags: %s", variantsCommandFlags.String())
+	return variantsCommandFlags.String()
 }
 
 // Video Scaling
@@ -419,11 +425,12 @@ func (v *HLSVariant) getVideoQualityString(t *Transcoder) string {
 	cmd := []string{
 		"-map v:0",
 		fmt.Sprintf("-c:v:%d %s", v.index, t.codec.Name()),                // Video codec used for this variant
-		fmt.Sprintf("-b:v:%d %dk", v.index, v.getAllocatedVideoBitrate()), // The average bitrate for this variant allowing space for audio
-		fmt.Sprintf("-maxrate:v:%d %dk", v.index, v.getMaxVideoBitrate()), // The max bitrate allowed for this variant
-		fmt.Sprintf("-g:v:%d %d", v.index, gop),                           // Suggested interval where i-frames are encoded into the segments
-		fmt.Sprintf("-keyint_min:v:%d %d", v.index, gop),                  // minimum i-keyframe interval
+		fmt.Sprintf("-b:v:%d %dk", v.index, v.getAllocatedVideoBitrate()), // The average bitrate for this variant
+		fmt.Sprintf("-maxrate:v:%d %dk", v.index, v.getMaxVideoBitrate()), // The max bitrate allowed
+		fmt.Sprintf("-g:v:%d %d", v.index, gop),                           // Suggested i-frame interval
+		fmt.Sprintf("-keyint_min:v:%d %d", v.index, gop),                  // Min i-keyframe interval
 		fmt.Sprintf("-r:v:%d %d", v.index, v.framerate),
+		fmt.Sprintf("-x264-params:v:%d scenecut=0:open_gop=0", v.index), // Fix -x264-params
 		t.codec.VariantFlags(v),
 	}
 
