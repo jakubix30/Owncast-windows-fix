@@ -26,10 +26,9 @@
 
 # <p align="center"> Owncast windows fix/mod </p>
 
-
 ## Getting Started
 
-I created this small fix by modifying only two files to make FFmpeg work on Windows. It was written quickly, with some help from ChatGPT, so it's not perfect. I'm publishing this as an unfinished but functional fix. I removed the RTMP Output settings and added my own modifications in transcoder.go. For now, it works, and I’ll finish it soon. ;)
+I created this small fix by modifying only two files to make FFmpeg work on Windows. It was written quickly, with some help from ChatGPT, so it's not perfect. I'm publishing this as an unfinished but functional fix. I removed the RTMP Output settings and added my own modifications in transcoder.go. For now, it works at 0.1.3 version.
 
 ### Backend
 
@@ -39,7 +38,7 @@ The Owncast backend is a service written in Go.
    - C compiler, like MinGW
    - [ffmpeg](https://ffmpeg.org/download.html),  tested on ffmpeg-2024-06-27-git-9a3bc59a38-full_build
 1. Install the [Go toolchain](https://golang.org/dl/) (1.21 or above).
-1. Clone the repo. `git clone https://github.com/owncast/owncast`
+1. Download source. `https://github.com/owncast/owncast/archive/refs/tags/v0.1.3.zip` 
 1. put `ffmpeg.exe` in projcet folder or add it to PATH
 1. `go run main.go` will run from the source. or go run build and run exe
 1. Visit `http://yourserver:8080` to access the web interface or `http://yourserver:8080/admin` to access the admin.
@@ -50,7 +49,7 @@ The Owncast backend is a service written in Go.
 The frontend is the web interface that includes the player, chat, embed components, and other UI.
 
 1. This project lives in the `web` directory.
-1. Run `npm install` to install the Javascript dependencies.
+1. Run `npm install` to install the Javascript dependencies, maybe some `npm audit`.
 1. Run `npm run dev`
 
 ## TODO
