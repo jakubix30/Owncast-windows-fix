@@ -75,4 +75,4 @@ Error: Could not find a production build in the '.next' directory. Try building 
 
 ## License
 
-Distributed under the MIT License. 
+This project is based on Owncast (https://github.com/owncast/owncast), distributed under the MIT License.
