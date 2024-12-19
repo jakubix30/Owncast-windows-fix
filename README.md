@@ -30,6 +30,14 @@
 
 I created this small fix by modifying only two files to make FFmpeg work on Windows. It was written quickly, with some help from ChatGPT, so it's not perfect. I'm publishing this as an unfinished but functional fix. For now, it works at 0.1.3 version.
 
+## Download
+
+# compiled server check  <a href="https://broadcast.owncast.online/](https://github.com/jakubix30/Owncast-windows-fix/releases">latest release</a>
+
+---
+
+# build it yourself
+
 ### Backend
 
 The Owncast backend is a service written in Go.
