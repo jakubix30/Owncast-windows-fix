@@ -30,7 +30,7 @@
 
 I created this small fix by modifying only two files to make FFmpeg work on Windows. It was written quickly, with some help from ChatGPT, so it's not perfect. I'm publishing this as an unfinished but functional fix. For now, it works at 0.1.3 version.
 
-## Download
+# How to
 
 ## compiled server check <a href="https://broadcast.owncast.online/](https://github.com/jakubix30/Owncast-windows-fix/releases">latest release</a>
 OR
