@@ -32,7 +32,7 @@ I created this small fix by modifying only two files to make FFmpeg work on Wind
 
 # How to
 
-## compiled server check <a href="https://broadcast.owncast.online/](https://github.com/jakubix30/Owncast-windows-fix/releases">latest release</a>
+## compiled server check <a href="https://github.com/jakubix30/Owncast-windows-fix/releases">latest release</a>
 OR
 ## Build your own 
 
