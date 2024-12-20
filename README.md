@@ -62,14 +62,6 @@ The frontend is the web interface that includes the player, chat, embed componen
 
 ## TODO
 
-### web
-npm run dev make it run normal
-```
-Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
-    at setupFsCheck (C:\Users\jakub\Downloads\owncast-0.1.3\web\node_modules\next\dist\server\lib\router-utils\filesystem.js:151:19)
-    at async initialize (C:\Users\jakub\Downloads\owncast-0.1.3\web\node_modules\next\dist\server\lib\router-server.js:62:23)
-    at async Server.<anonymous> (C:\Users\jakub\Downloads\owncast-0.1.3\web\node_modules\next\dist\server\lib\start-server.js:249:36)
-```
 
 <!-- LICENSE -->
 
